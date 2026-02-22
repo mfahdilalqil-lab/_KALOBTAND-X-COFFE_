@@ -1,0 +1,233 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Palet Warna Enterprise (v1 & v2) */
+  --bg-primary: #0D0B0A;
+  --accent: #C76B4C;
+  --interactive: #4D83FF;
+  --text: #E8C9A9;
+  --card: #1A1816;
+  --border: #2D2A26;
+}
+
+/* Base Styles */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  color: var(--text);
+  background: var(--bg-primary);
+}
+
+body {
+  font-family: var(--font-satoshi), -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography Scales (v1) */
+h1 {
+  font-size: clamp(2.5rem, 8vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: clamp(2rem, 6vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+h3 {  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+p {
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  line-height: 1.7;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 640px) {
+  /* Prevent horizontal scroll (v1) */
+  body {
+    overflow-x: hidden;
+  }
+  
+  /* Ensure text readability without zoom (v1) */
+  h1 { font-size: 2.5rem; }
+  h2 { font-size: 2rem; }
+  p { font-size: 1rem; }
+}
+
+/* Focus styles for accessibility (v1) */
+button:focus,
+input:focus,
+select:focus,
+a:focus {
+  outline: 2px solid var(--interactive);
+  outline-offset: 2px;
+}
+
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--interactive);
+}
+
+/* Dark mode specific overrides (v2) */
+[data-theme="dark"] {
+  --bg-primary: #0D0B0A;
+  --text: #E8C9A9;
+  --card: #1A1816;
+  --border: #2D2A26;
+}
+
+/* Light mode overrides */
+[data-theme="light"] {
+  --bg-primary: #E8C9A9;
+  --text: #0D0B0A;
+  --card: #F8F5F0;
+  --border: #D4C7B8;
+}
+
+/* Form element styling */
+input[type="text"],
+input[type="email"],
+input[type="date"],
+select {
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  background-color: var(--card);
+  color: var(--text);
+  font-family: var(--font-satoshi), sans-serif;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="date"]:focus,
+select:focus {
+  border-color: var(--accent);
+  outline: none;
+}
+
+/* Button styling */
+.btn-primary {
+  background-color: var(--accent);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #a5583e;
+  transform: scale(1.05);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--interactive);
+  border: 2px solid var(--interactive);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background-color: var(--interactive);
+  color: var(--bg-primary);
+}
+
+/* Utility classes for spacing */
+.mt-100 {
+  margin-top: 100px;
+}
+
+.mb-100 {
+  margin-bottom: 100px;
+}
+
+.py-100 {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+/* Responsive container */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Focus-visible polyfill for older browsers */.js-focus-visible :focus:not(.focus-visible) {
+  outline: none;
+}
+
+/* High contrast mode support (v1) */
+@media (prefers-contrast: high) {
+  :root {
+    --accent: #c74b2e;
+    --interactive: #2a6df4;
+  }
+}
+
+/* Reduced motion support (v1) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+  
+  nav,
+  footer,
+  button,
+  form {
+    display: none;
+  }
+}
